@@ -1,0 +1,56 @@
+require 'spec_helper'
+
+platforms = {
+  redhat: %w(6.3 6.4 6.5),
+  centos: %w(6.3 6.4 6.5),
+  fedora: %w(18 19 20)
+}
+
+platforms.each_pair do |p, v|
+  Array(v).each do |ver|
+    describe 'yumrepo_server::default' do
+      # Use an explicit subject
+      let(:chef_run) do
+        ChefSpec::Runner.new(platform: p.to_s, version: ver, log_level: :warn) do |node|
+          Chef::Log.debug(format('#### FILE: %s  PLATFORM: %s  VERSION: %s ####', ::File.basename(__FILE__), p, ver))
+        end.converge(described_recipe)
+      end
+
+      it 'creates the root repository directory' do
+        expect(chef_run).to create_directory '/var/lib/yum-repo'
+      end
+
+      it 'installs the createrepo package' do
+        expect(chef_run).to install_package 'createrepo'
+      end
+
+      it 'installs apache' do
+        expect(chef_run).to include_recipe 'apache2'
+        expect(chef_run).to install_package 'httpd'
+      end
+
+      it 'installs and configures logrotate' do
+        expect(chef_run).to include_recipe 'apache2::logrotate'
+        expect(chef_run).to include_recipe 'logrotate'
+        expect(chef_run).to install_package 'logrotate'
+
+        file = '/etc/logrotate.d/httpd'
+        expect(chef_run).to create_template file
+        expect(chef_run).to render_file file
+      end
+
+      it 'configures the yum repo in apache' do
+        file = '/etc/httpd/sites-available/yum-server.conf'
+
+        expect(chef_run).to create_template file
+
+        expect(chef_run).to render_file(file).with_content %r{DocumentRoot\s+/var/lib/yum-repo$}
+        expect(chef_run).to render_file(file).with_content %r{<Directory\s+/var/lib/yum-repo>$}
+        expect(chef_run).to render_file(file).with_content %r{ErrorLog\s+/var/log/httpd/yum-server-error.log$}
+        expect(chef_run).to render_file(file).with_content %r{CustomLog\s+/var/log/httpd/yum-server-access.log combined$}
+        expect(chef_run).to render_file(file).with_content(/RewriteEngine\s+Off$/)
+        expect(chef_run).to render_file(file).with_content %r{RewriteLog\s+/var/log/httpd/yum-server-rewrite.log$}
+      end
+    end
+  end
+end
