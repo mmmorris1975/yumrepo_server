@@ -24,5 +24,6 @@ web_app 'yum-server' do
   server_name node['hostname']
   server_aliases node['fqdn']
   docroot node['yum']['server']['repo_base_dir']
+  directory_options 'Indexes MultiViews FollowSymlinks'
   rewrite 'Off'
 end

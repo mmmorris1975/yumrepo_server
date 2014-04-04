@@ -1,7 +1,7 @@
 actions :create, :delete, :update
 default_action :create
 
-# Directory to create under node['yum']['repo_base_dir']
+# Directory to create under node['yum']['server']['repo_base_dir']
 attribute :dir, kind_of: String, name_attribute: true, required: true
 
 # Options to pass to createrepo/modifyrepo cmd
