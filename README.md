@@ -22,14 +22,14 @@ Attributes
 
 #### yumrepo_server::default
 
-*  **['yum']['repo\_base\_dir']**
-    _Type:_ String
-    _Description:_ The base directory where the repositories will be configured.  Will be used as Apache's DocumentRoot
-    _Default:_ /var/lib/yum-repo
+*  **['yum']['repo\_base\_dir']**  
+    _Type:_ String  
+    _Description:_ The base directory where the repositories will be configured.  Will be used as Apache's DocumentRoot  
+    _Default:_ /var/lib/yum-repo  
 
-*  **['apache']['include\_logrotate']**
-    _Type:_ Boolean
-    _Description:_ Flag to determine if logrotate will be configured for Apache logs
+*  **['apache']['include\_logrotate']**  
+    _Type:_ Boolean  
+    _Description:_ Flag to determine if logrotate will be configured for Apache logs  
     _Default:_ true
 
 Usage
@@ -104,5 +104,5 @@ end
 License and Authors
 -------------------
 
-Authors: Michael Morris
+Authors: Michael Morris  
 License: 3-clause BSD
