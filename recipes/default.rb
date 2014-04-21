@@ -22,7 +22,7 @@ include_recipe 'apache2::logrotate' if node['apache']['include_logrotate']
 
 web_app 'yum-server' do
   server_name node['hostname']
-  server_aliases node['fqdn']
+  server_aliases [node['fqdn'], node['ipaddress']]
   docroot node['yum']['server']['repo_base_dir']
   directory_options 'Indexes MultiViews FollowSymlinks'
   rewrite 'Off'

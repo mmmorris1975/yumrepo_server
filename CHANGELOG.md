@@ -5,3 +5,6 @@ yumrepo_server CHANGELOG
 -----
 - [michael.m.morris@gmail.com] - Initial release of yumrepo_server
 
+0.1.1
+-----
+- [michael.m.morris@gmail.com] - Added node['ipaddress'] to the array of server_alias values in the web_app lwrp
