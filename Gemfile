@@ -9,4 +9,6 @@ group :test do
   gem 'knife-spork'
   gem 'rake'
   gem 'rubocop'
+  gem 'test-kitchen'
+  gem 'kitchen-vagrant'
 end

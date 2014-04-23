@@ -1,6 +1,13 @@
 cb_dir  = ::File.dirname(__FILE__)
 cb_name = ::File.basename(cb_dir)
 
+begin
+  require 'kitchen/rake_tasks'
+  Kitchen::RakeTasks.new
+rescue LoadError
+  puts ">>>>> Kitchen gem not loaded, omitting tasks" unless ENV['CI']
+end
+
 task :clean do |t|
   ::Dir.chdir(cb_dir)
 
@@ -48,7 +55,7 @@ task :test do |t|
   end
 end
 
-task :release, [:type] => [:clean, :test] do |t, args|
+task :release, [:type] => [:clean, :test, 'kitchen:all'] do |t, args|
   type = args.type
 
   if type.nil? || type.strip.empty?
