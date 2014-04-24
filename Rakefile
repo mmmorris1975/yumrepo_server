@@ -5,48 +5,48 @@ begin
   require 'kitchen/rake_tasks'
   Kitchen::RakeTasks.new
 rescue LoadError
-  puts ">>>>> Kitchen gem not loaded, omitting tasks" unless ENV['CI']
+  puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
 end
 
-task :clean do |t|
+task :clean do
   ::Dir.chdir(cb_dir)
 
-  ::File.unlink('metadata.json') if ::File.exists?('metadata.json')
+  ::File.unlink('metadata.json') if ::File.exist?('metadata.json')
 
   ::Dir.glob('*.lock').each do |f|
     ::File.unlink(f)
   end
 end
 
-task :distclean => [:clean] do |t|
+task :distclean => [:clean] do
   ::Dir.chdir(cb_dir)
 
   file = ::File.join('..', "#{cb_name}.tar")
-  ::File.unlink(file) if ::File.exists? file
+  ::File.unlink(file) if ::File.exist? file
 end
 
-task :knife_test do |t|
+task :knife_test do
   sh "bundle exec knife cookbook test #{cb_name}"
 end
 
 task :fc => [:foodcritic]
-task :foodcritic do |t|
+task :foodcritic do
   sh "bundle exec foodcritic  #{cb_dir}"
 end
 
 task :rc => [:rubocop]
-task :rubocop do |t|
+task :rubocop do
   sh "bundle exec rubocop  #{cb_dir}"
 end
 
-task :chefspec do |t|
+task :chefspec do
   ::Dir.chdir(cb_dir)
   sh 'bundle exec rspec --color --format documentation'
 end
 
-task :test do |t|
-  if ::File.exists?(::File.join(cb_dir, 'Strainerfile'))
-    sh 'bundle exec strainer test' if ::File.exists?(::File.join(cb_dir, 'Strainerfile'))
+task :test do
+  if ::File.exist?(::File.join(cb_dir, 'Strainerfile'))
+    sh 'bundle exec strainer test' if ::File.exist?(::File.join(cb_dir, 'Strainerfile'))
   else
     Rake::Task[:knife_test].execute
     Rake::Task[:foodcritic].execute
@@ -55,7 +55,7 @@ task :test do |t|
   end
 end
 
-task :release, [:type] => [:clean, :test, 'kitchen:all'] do |t, args|
+task :release, [:type] => [:clean, :test, 'kitchen:all'] do |_t, args|
   type = args.type
 
   if type.nil? || type.strip.empty?
@@ -88,7 +88,7 @@ task :release, [:type] => [:clean, :test, 'kitchen:all'] do |t, args|
   sh "bundle exec knife spork bump #{cb_name} #{type}"
 end
 
-task :bundle => [:release] do |t|
+task :bundle => [:release] do
   sh "bundle exec knife cookbook metadata #{cb_name}"
 
   ::Dir.chdir(::File.join(cb_dir, '..'))
