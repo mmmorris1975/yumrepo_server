@@ -2,9 +2,8 @@
 # Cookbook Name:: yumrepo_server
 # Recipe:: default
 #
-# Copyright 2014, Pearson
-#
-# All rights reserved - Do Not Redistribute
+# Copyright 2014, Michael Morris
+# LICENSE: 3-clause BSD
 #
 
 package 'createrepo'
@@ -26,7 +25,7 @@ include_recipe 'apache2::logrotate' if node['apache']['include_logrotate']
 
 web_app 'yum-server' do
   server_name node['hostname']
-  server_aliases [node['fqdn'], node['ipaddress']]
+  server_aliases [node['fqdn'], node['ipaddress']] + node['yum']['server']['http_aliases']
   docroot node['yum']['server']['repo_base_dir']
   directory_options 'Indexes MultiViews FollowSymlinks'
   rewrite 'Off'

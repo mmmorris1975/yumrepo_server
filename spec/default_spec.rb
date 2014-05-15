@@ -17,6 +17,8 @@ platforms.each_pair do |p, v|
           node.automatic['hostname'] = 'testhost'
           node.automatic['fqdn'] = 'testhost.yumserver.local'
           node.automatic['ipaddress'] = '55.55.55.55'
+
+          node.override['yum']['server']['http_aliases'] = ['server-alias']
         end.converge(described_recipe)
       end
 
@@ -50,6 +52,7 @@ platforms.each_pair do |p, v|
 
         expect(chef_run).to render_file(file).with_content(/ServerName\s+testhost/)
         expect(chef_run).to render_file(file).with_content(/ServerAlias\s+testhost.yumserver.local\s+55.55.55.55/)
+        expect(chef_run).to render_file(file).with_content(/ServerAlias\s+.*\s+server-alias/)
         expect(chef_run).to render_file(file).with_content %r{DocumentRoot\s+/var/lib/yum-repo$}
         expect(chef_run).to render_file(file).with_content %r{<Directory\s+/var/lib/yum-repo>$}
         expect(chef_run).to render_file(file).with_content %r{ErrorLog\s+/var/log/httpd/yum-server-error.log$}

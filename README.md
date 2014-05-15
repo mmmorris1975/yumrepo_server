@@ -27,6 +27,11 @@ Attributes
     _Description:_ The base directory where the repositories will be configured.  Will be used as Apache's DocumentRoot  
     _Default:_ /var/lib/yum-repo  
 
+*  **['yum']['server']['http\_aliases']**  
+    _Type:_ Array  
+    _Description:_ An array of server name aliases to plug in to the httpd config  
+    _Default:_ [] (empty array)  
+
 *  **['apache']['include\_logrotate']**  
     _Type:_ Boolean  
     _Description:_ Flag to determine if logrotate will be configured for Apache logs  
