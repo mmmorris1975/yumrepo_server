@@ -14,3 +14,7 @@ yumrepo_server CHANGELOG
 -----
 - [michael.m.morris@gmail.com] - Added attribute to pass in custom httpd ServerAlias values
 - [michael.m.morris@gmail.com] - Updated file headers to include correct copyright/license info
+
+0.1.3
+-----
+- [michael.m.morris@gmail.com] - Changed bundle process from tar to 'knife cookbook site share'

@@ -90,17 +90,18 @@ def download_pkgs(src, dir, pkgs)
 end
 
 def create_pkg_file(pkg_ary)
-  unless pkg_ary.nil? || pkg_ary.empty?
-    f = Tempfile.new('yum_pkg_list')
+  # refactored for rubocop
+  return if pkg_ary.nil? || pkg_ary.empty?
 
-    begin
-      f.write(pkg_ary.join("\n"))
-    ensure
-      f.close(false)
-    end
+  f = Tempfile.new('yum_pkg_list')
 
-    f
+  begin
+    f.write(pkg_ary.join("\n"))
+  ensure
+    f.close(false)
   end
+
+  f
 end
 
 def resolve_full_path(res_dir)
