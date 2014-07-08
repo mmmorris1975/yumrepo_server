@@ -4,6 +4,7 @@ This cookbook configures a Yum repository to be served from your system. It will
 
 Requirements
 ------------
+Ruby 1.9 or later
 
 #### cookbooks
 - `apache2`
