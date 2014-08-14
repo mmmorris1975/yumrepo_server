@@ -22,6 +22,11 @@ platforms.each_pair do |p, v|
         end.converge(described_recipe)
       end
 
+      before do
+        # Needed for apache2 2.0+ cookbook
+        stub_command('/usr/sbin/httpd -t').and_return(0)
+      end
+
       it 'creates the root repository directory' do
         expect(chef_run).to create_directory '/var/lib/yum-repo'
       end
