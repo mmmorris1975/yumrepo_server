@@ -19,7 +19,6 @@ doc/
 
 .idea
 .vagrant
-Berksfile.lock
 *~
 *#
 .#*
@@ -30,7 +29,6 @@ Berksfile.lock
 /tmp
 
 # Bundler
-Gemfile.lock
 bin/*
 .bundle/*
 
