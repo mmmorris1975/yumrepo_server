@@ -38,5 +38,5 @@ describe file '/etc/httpd/sites-available/yum-server.conf' do
 end
 
 describe file '/etc/httpd/sites-enabled/yum-server.conf' do
-  it { should be_linked_to '/etc/httpd/sites-available/yum-server.conf' }
+  it { should be_linked_to '../sites-available/yum-server.conf' }
 end
