@@ -33,6 +33,11 @@ Attributes
     _Description:_ An array of server name aliases to plug in to the httpd config  
     _Default:_ [] (empty array)  
 
+*  **['yum']['server']['http\_port']**  
+    _Type:_ Integer  
+    _Description:_ The server port to plug in to the httpd config  
+    _Default:_ 80  
+
 *  **['apache']['include\_logrotate']**  
     _Type:_ Boolean  
     _Description:_ Flag to determine if logrotate will be configured for Apache logs  
