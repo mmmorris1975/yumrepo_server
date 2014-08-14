@@ -50,6 +50,27 @@ platforms.each_pair do |p, v|
 
         expect(chef_run).to create_template file
 
+        expect(chef_run).to render_file(file).with_content(/<VirtualHost\s+\*:80>/)
+        expect(chef_run).to render_file(file).with_content(/ServerName\s+testhost/)
+        expect(chef_run).to render_file(file).with_content(/ServerAlias\s+testhost.yumserver.local\s+55.55.55.55/)
+        expect(chef_run).to render_file(file).with_content(/ServerAlias\s+.*\s+server-alias/)
+        expect(chef_run).to render_file(file).with_content %r{DocumentRoot\s+/var/lib/yum-repo$}
+        expect(chef_run).to render_file(file).with_content %r{<Directory\s+/var/lib/yum-repo>$}
+        expect(chef_run).to render_file(file).with_content %r{ErrorLog\s+/var/log/httpd/yum-server-error.log$}
+        expect(chef_run).to render_file(file).with_content %r{CustomLog\s+/var/log/httpd/yum-server-access.log combined$}
+        expect(chef_run).to render_file(file).with_content(/RewriteEngine\s+Off$/)
+        expect(chef_run).to render_file(file).with_content %r{RewriteLog\s+/var/log/httpd/yum-server-rewrite.log$}
+      end
+
+      it 'configures the yum repo in apache on a custom port' do
+        chef_run.node.set['yum']['server']['http_port'] = 9090
+        chef_run.converge(described_recipe)
+
+        file = '/etc/httpd/sites-available/yum-server.conf'
+
+        expect(chef_run).to create_template file
+
+        expect(chef_run).to render_file(file).with_content(/<VirtualHost\s+\*:9090>/)
         expect(chef_run).to render_file(file).with_content(/ServerName\s+testhost/)
         expect(chef_run).to render_file(file).with_content(/ServerAlias\s+testhost.yumserver.local\s+55.55.55.55/)
         expect(chef_run).to render_file(file).with_content(/ServerAlias\s+.*\s+server-alias/)

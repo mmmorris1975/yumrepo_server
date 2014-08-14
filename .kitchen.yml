@@ -13,3 +13,10 @@ suites:
     run_list:
       - recipe[yumrepo_server::default]
     attributes:
+  - name: custom_port
+    run_list:
+      - recipe[yumrepo_server::default]
+    attributes:
+      yum:
+        server:
+          http_port: 9090
