@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
 group :test do
-  gem 'chefspec', '> 3.3.0'
+  gem 'chefspec', '~> 4.0'
   gem 'foodcritic', '> 3.0.0'
   gem 'strainer'
+  gem 'serverspec', '~> 2.21'
 
   gem 'chef', '~> 11.0'
   gem 'knife-ec2'
