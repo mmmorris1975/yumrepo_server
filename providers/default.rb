@@ -32,9 +32,11 @@ action :create do
       end
     end
   ensure
-    file pkg_file.path do
-      action :delete
-      only_if { pkg_file }
+    if pkg_file
+      file pkg_file.path do
+        action :delete
+        only_if { pkg_file }
+      end
     end
   end
 end
