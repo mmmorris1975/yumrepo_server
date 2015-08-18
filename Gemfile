@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 group :test do
   gem 'chefspec', '~> 4.0'
-  gem 'foodcritic', '> 3.0.0'
+  gem 'foodcritic', '~> 4.0'
   gem 'serverspec', '~> 2.21'
 
   gem 'chef', '~> 12.0'
-  gem 'knife-ec2'
+  gem 'berkshelf', '~> 3.3'
   gem 'knife-spork'
   gem 'rake'
   gem 'rubocop'
