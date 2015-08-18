@@ -26,3 +26,7 @@ yumrepo_server CHANGELOG
 0.1.5
 -----
 - [mmmorris1975] - Fixed GitHub issue #2, adding conditional guard in 'ensure' block for lwrp :create action
+
+0.2.0
+-----
+- [mmmorris1975] - Changes required to support Centos 7 to install yum repo.
