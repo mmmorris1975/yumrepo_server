@@ -18,8 +18,9 @@ describe process 'httpd' do
 end
 
 describe port 80 do
-  it { should be_listening.with('tcp') }
+  it { should be_listening }
   it { should_not be_listening.with('udp') }
+  it { should_not be_listening.with('udp6') }
 end
 
 describe file '/var/lib/yum-repo' do

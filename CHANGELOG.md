@@ -22,3 +22,7 @@ yumrepo_server CHANGELOG
 0.1.4
 -----
 - [gimler] - Added option to specify http port 
+
+0.1.5
+-----
+- [mmmorris1975] - Fixed GitHub issue #2, adding conditional guard in 'ensure' block for lwrp :create action

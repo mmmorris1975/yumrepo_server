@@ -4,11 +4,8 @@ DEPENDENCIES
     metadata: true
 
 GRAPH
-  apache2 (3.0.1)
-    iptables (>= 0.0.0)
-    logrotate (>= 0.0.0)
-  iptables (1.0.0)
+  apache2 (3.1.0)
   logrotate (1.9.2)
-  yumrepo_server (0.1.5)
-    apache2 (< 3.1.0)
+  yumrepo_server (0.2.0)
+    apache2 (~> 3.1)
     logrotate (>= 0.0.0)

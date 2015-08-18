@@ -22,7 +22,16 @@ end
 # anything older is obsolete/unsupported
 node.default['apache']['listen_ports'] << node['yum']['server']['http_port']
 include_recipe 'apache2'
-include_recipe 'apache2::logrotate' if node['apache']['include_logrotate']
+
+if node['apache']['include_logrotate']
+  # apache2 version 3.1+ cookbook no longer include bundled
+  # logrotate recipe, emulate it here
+  include_recipe 'logrotate'
+
+  logrotate_app 'apache2' do
+    path "#{node['apache']['log_dir']}/*.log"
+  end
+end
 
 web_app 'yum-server' do
   server_name node['hostname']
