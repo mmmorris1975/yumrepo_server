@@ -48,7 +48,6 @@ task :test do
   if ::File.exist?(::File.join(cb_dir, 'Strainerfile'))
     sh 'bundle exec strainer test' if ::File.exist?(::File.join(cb_dir, 'Strainerfile'))
   else
-    Rake::Task[:knife_test].execute
     Rake::Task[:foodcritic].execute
     Rake::Task[:rubocop].execute
     Rake::Task[:chefspec].execute
