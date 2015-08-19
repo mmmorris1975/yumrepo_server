@@ -28,7 +28,7 @@ if node['apache']['include_logrotate']
   # logrotate recipe, emulate it here
   include_recipe 'logrotate'
 
-  logrotate_app 'apache2' do
+  logrotate_app 'httpd' do
     path "#{node['apache']['log_dir']}/*.log"
   end
 end

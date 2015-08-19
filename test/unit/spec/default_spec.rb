@@ -41,7 +41,6 @@ platforms.each_pair do |p, v|
       end
 
       it 'installs and configures logrotate' do
-        expect(chef_run).to include_recipe 'apache2::logrotate'
         expect(chef_run).to include_recipe 'logrotate'
         expect(chef_run).to install_package 'logrotate'
 
