@@ -29,4 +29,4 @@ yumrepo_server CHANGELOG
 
 0.2.0
 -----
-- [mmmorris1975] - Changes required to support Centos 7 to install yum repo.
+- [mmmorris1975] - Changes required to support Centos 7 to install yum repo. (should still be Chef 11 compliant!)
