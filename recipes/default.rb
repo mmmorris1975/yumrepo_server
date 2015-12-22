@@ -21,7 +21,11 @@ end
 # Not going to bother testing older Fedora's since the project moves so fast,
 # anything older is obsolete/unsupported
 node.default['apache']['listen_ports'] << node['yum']['server']['http_port']
+
 include_recipe 'apache2'
+include_recipe 'apache2::mod_rewrite'
+include_recipe 'apache2::mod_authz_core'
+include_recipe 'apache2::mod_authz_host'
 
 if node['apache']['include_logrotate']
   # apache2 version 3.1+ cookbook no longer include bundled
