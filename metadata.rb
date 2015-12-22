@@ -4,7 +4,7 @@ maintainer_email 'michael.m.morris@gmail.com'
 license '3-clause BSD'
 description 'Installs/Configures Yum repository server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.2.0'
+version '0.2.1'
 
 %w(redhat centos).each do |p|
   supports p
