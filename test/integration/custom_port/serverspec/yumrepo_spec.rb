@@ -17,6 +17,10 @@ describe process 'httpd' do
   it { should be_running }
 end
 
+describe command 'httpd -t' do
+  its(:exit_status) { should eq 0 }
+end
+
 describe port 9090 do
   it { should be_listening }
   it { should_not be_listening.with('udp') }

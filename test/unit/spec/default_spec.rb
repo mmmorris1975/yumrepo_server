@@ -63,7 +63,6 @@ platforms.each_pair do |p, v|
         expect(chef_run).to render_file(file).with_content %r{ErrorLog\s+/var/log/httpd/yum-server-error.log$}
         expect(chef_run).to render_file(file).with_content %r{CustomLog\s+/var/log/httpd/yum-server-access.log combined$}
         expect(chef_run).to render_file(file).with_content(/RewriteEngine\s+Off$/)
-        expect(chef_run).to render_file(file).with_content %r{RewriteLog\s+/var/log/httpd/yum-server-rewrite.log$}
       end
 
       it 'configures the yum repo in apache on a custom port' do
@@ -83,7 +82,6 @@ platforms.each_pair do |p, v|
         expect(chef_run).to render_file(file).with_content %r{ErrorLog\s+/var/log/httpd/yum-server-error.log$}
         expect(chef_run).to render_file(file).with_content %r{CustomLog\s+/var/log/httpd/yum-server-access.log combined$}
         expect(chef_run).to render_file(file).with_content(/RewriteEngine\s+Off$/)
-        expect(chef_run).to render_file(file).with_content %r{RewriteLog\s+/var/log/httpd/yum-server-rewrite.log$}
       end
     end
   end
