@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 group :test do
   gem 'chefspec', '~> 4.0'
-  gem 'foodcritic', '~> 4.0'
+  gem 'foodcritic', '~> 5.0'
   gem 'serverspec', '~> 2.21'
 
   gem 'chef', '~> 12.0'
