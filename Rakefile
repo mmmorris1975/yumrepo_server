@@ -74,10 +74,10 @@ task :release, [:type] => [:clean, :test, 'kitchen:all'] do |_t, args|
       print "ERROR: version format must be in the form of x.y.z\n"
       exit 1
     end
-  elsif type.strip.match(/^\d+\.\d+\.\d+$/)
+  elsif type.strip =~ /^\d+\.\d+\.\d+$/
     type = "manual #{type}"
   else
-    unless type.start_with?('major') || type.start_with?('minor') || type.start_with?('patch')
+    unless type.start_with?('major', 'minor', 'patch')
       print "ERROR: invalid release type of #{type} given\n"
       exit 1
     end
