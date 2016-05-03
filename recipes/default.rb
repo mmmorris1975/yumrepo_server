@@ -20,7 +20,9 @@ end
 # Needs lots of changes to make apache work in Fedora 18/19/20 (apache 2.4)
 # Not going to bother testing older Fedora's since the project moves so fast,
 # anything older is obsolete/unsupported
-node.default['apache']['listen_ports'] << node['yum']['server']['http_port']
+#
+# apache2 3.2.x cookbook changed from listen_ports to just listen
+node.default['apache']['listen'] << node['yum']['server']['http_port']
 
 include_recipe 'apache2'
 include_recipe 'apache2::mod_rewrite'

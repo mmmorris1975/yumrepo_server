@@ -38,4 +38,8 @@ yumrepo_server CHANGELOG
 
 0.2.2
 -----
-- [mmmmorris975] - Change locking for apache2 cookbook to ~> 3.1.0 to avoid breaking changes in 3.2.x
+- [mmmorris1975] - Change locking for apache2 cookbook to ~> 3.1.0 to avoid breaking changes in 3.2.x
+
+0.3.0
+-----
+- [mmmorris1975] - Updated cookbook to use apache2 3.2.x cookbook and the attribute changes it requires
