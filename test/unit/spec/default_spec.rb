@@ -66,7 +66,7 @@ platforms.each_pair do |p, v|
       end
 
       it 'configures the yum repo in apache on a custom port' do
-        chef_run.node.set['yum']['server']['http_port'] = 9090
+        chef_run.node.set['yum']['server']['http_port'] = '*:9090'
         chef_run.converge(described_recipe)
 
         file = '/etc/httpd/sites-available/yum-server.conf'
