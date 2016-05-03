@@ -35,3 +35,7 @@ yumrepo_server CHANGELOG
 -----
 - [mmmorris1975] - Address issue #3, removed invalid Apache 2.4 directives 'Order' and 'RewriteLog'
 - [mmmorris1975] - Added additional serverspec test to run `httpd -t` to test Apache syntax
+
+0.2.2
+-----
+- [mmmmorris975] - Change locking for apache2 cookbook to ~> 3.1.0 to avoid breaking changes in 3.2.x
